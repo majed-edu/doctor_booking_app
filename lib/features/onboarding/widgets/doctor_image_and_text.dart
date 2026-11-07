@@ -14,9 +14,12 @@ class DoctorImageAndText extends StatelessWidget {
         Container(
           foregroundDecoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.white, Colors.white.withValues(alpha: 0.0)],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              colors: [
+                Colors.white,
+               Colors.white.withValues(alpha: 0.0),
+               ],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
               stops: const [0.14, 0.4],
             ),
           ),
@@ -32,7 +35,9 @@ class DoctorImageAndText extends StatelessWidget {
           bottom: 30,
           child: Center(
             child: Text(
-              'Best Doctor Appoinment App',
+              'Best Doctor\nAppointment App',
+              textAlign: TextAlign.center,
+
               style: TextStyles.font32BlueBold.copyWith(height: 1.4),
             ),
           ),
