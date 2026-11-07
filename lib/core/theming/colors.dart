@@ -1,0 +1,8 @@
+
+
+import 'package:flutter/material.dart';
+
+class ColorsManager {
+  static const Color mainBlue = Color(0xFF247CFF); // اللون الأساسي للتطبيق
+  static const Color grey = Color(0xFF757575); // اللون الث
+}
