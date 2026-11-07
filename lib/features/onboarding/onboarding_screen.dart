@@ -28,7 +28,7 @@ class OnboardingScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Book your doctor appointment in just a few taps and get the best medical care at your fingertips.',
+                        'Book your doctor appointment in just a few taps and\n get the best medical care at your fingertips.',
                         style: TextStyles.font13GreyRegular,
                         textAlign: TextAlign.center ,
                       ),
