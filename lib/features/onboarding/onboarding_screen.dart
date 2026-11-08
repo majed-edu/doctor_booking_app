@@ -1,6 +1,7 @@
 import 'package:doctor_booking_app/core/theming/text_styles.dart';
 import 'package:doctor_booking_app/features/onboarding/widgets/doc_logo_and_name.dart';
 import 'package:doctor_booking_app/features/onboarding/widgets/doctor_image_and_text.dart';
+import 'package:doctor_booking_app/features/onboarding/widgets/get_started_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,24 +25,27 @@ class OnboardingScreen extends StatelessWidget {
 
 
                 Padding(
-                  padding: const EdgeInsets.symmetric(  horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(  horizontal: 16.0),
                   child: Column(
                     children: [
                       Text(
                         'Book your doctor appointment in just a few taps and\n get the best medical care at your fingertips.',
-                        style: TextStyles.font13GreyRegular,
+                        style: TextStyles.font13GrayRegular,
                         textAlign: TextAlign.center ,
                       ),
                       SizedBox(
                         height: 30.h,
                       ),
+                      const GetStartedButton(),
+
 
                       
 
                       
                     ],
                   ),
-                )
+                ),
+                
               ],
             ),
           ),
