@@ -51,7 +51,7 @@ dependencies:
 
   # Networking & API
   dio: ^5.11.1 # تنفيذ طلبات HTTP.
-  retrofit: ^4.10.0 # تنظيم طلبات API.
+  retrofit: 4.9.0 # تنظيم طلبات API.
   retrofit_generator: ^10.2.0 # توليد كود Retrofit.
   pretty_dio_logger: ^1.4.0 # عرض تفاصيل طلبات API.
 
@@ -64,6 +64,11 @@ dependencies:
   # UI & Design
   flutter_svg: ^2.2.3 # عرض ملفات SVG.
   flutter_screenutil: ^5.9.3 # تصميم واجهة متجاوبة مع أحجام الشاشات المختلفة.
+
+  # Code Generation
+  build_runner: ^2.15.1 # توليد الكود تلقائيًا.
+
+
 
 dev_dependencies:
   flutter_test:
