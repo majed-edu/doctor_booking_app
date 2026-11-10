@@ -1,11 +1,8 @@
 import 'package:doctor_booking_app/core/helpers/spacing.dart';
-import 'package:doctor_booking_app/core/theming/colors.dart';
 import 'package:doctor_booking_app/core/theming/text_styles.dart';
 import 'package:doctor_booking_app/core/widgets/app_text_button.dart';
-import 'package:doctor_booking_app/core/widgets/app_text_form_field.dart';
-import 'package:doctor_booking_app/features/login/data/models/login_request_body.dart';
 import 'package:doctor_booking_app/features/login/logic/cubit/login_cubit.dart';
-import 'package:doctor_booking_app/features/login/ui/widgets/already_have_account_text.dart';
+import 'package:doctor_booking_app/features/login/ui/widgets/dont_have_account_text.dart';
 import 'package:doctor_booking_app/features/login/ui/widgets/email_and_password.dart';
 import 'package:doctor_booking_app/features/login/ui/widgets/login_bloc_listener.dart';
 import 'package:doctor_booking_app/features/login/ui/widgets/terms_and_conditions_text.dart';
@@ -71,11 +68,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     verticalSpace(16),
                     const TermsAndConditionsText(),
                     verticalSpace(60),
-                    const AlreadyHaveAccountText(),
+                    const DontHaveAccountText(),
 
                     const LoginBlocListener(),
-
-                    
                   ],
                 ),
               ],
@@ -88,18 +83,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void validateThenDoLogin(BuildContext context) {
     final loginCubit = context.read<LoginCubit>();
-    if (loginCubit.fromKey.currentState?.validate() ?? false) {
-      // If the form is valid, you can proceed with the login logic
-      context.read<LoginCubit>().emitLoginStates(LoginRequestBody(
-        email: loginCubit.emailController.text,
-        password: loginCubit.passwordController.text,
-      ));
-
-    } else {
-      // If the form is invalid, you can show an error message or handle it accordingly
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill in all required fields.')),
-      );
+    if (loginCubit.fromKey.currentState!.validate()) {
+      context.read<LoginCubit>().emitLoginStates();
     }
   }
 }

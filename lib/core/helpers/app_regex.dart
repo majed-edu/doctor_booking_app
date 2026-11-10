@@ -34,4 +34,8 @@ class AppRegex {
     return RegExp(r'^.{8,}$')
     .hasMatch(password);
   }
+
+  static bool isPhoneNumberValid(String phoneNumber) {
+    return RegExp(r'^\+?[0-9]{7,15}$').hasMatch(phoneNumber);
+  }
 }
