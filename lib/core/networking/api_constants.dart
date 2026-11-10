@@ -3,7 +3,7 @@
 class ApiConstants {
   static const String apiBaseUrl = 'https://vcare-live-mock-api.onrender.com/api/';
   static const String login = '/auth/login';
-  // static const String registerEndpoint = '/auth/register';
+  static const String signup = '/auth/register';
 }
 
 

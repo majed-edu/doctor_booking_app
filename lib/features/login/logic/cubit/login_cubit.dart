@@ -6,19 +6,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:doctor_booking_app/features/login/logic/cubit/login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-
   final LoginRepo _loginRepo;
   LoginCubit(this._loginRepo) : super(const LoginState.initial());
-
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final fromKey = GlobalKey<FormState>();
 
-  void emitLoginStates(LoginRequestBody loginRequestBody) async {
+  void emitLoginStates() async {
     emit(const LoginState.loading());
-    
-    final response = await _loginRepo.login(loginRequestBody);
+
+    final response = await _loginRepo.login(
+      LoginRequestBody(
+        email: emailController.text,
+        password: passwordController.text,
+      ),
+    );
 
     response.when(
       success: (LoginResponse) {

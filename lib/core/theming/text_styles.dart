@@ -91,6 +91,8 @@ class TextStyles {
     color: ColorsManager.mainBlue,
   );
 
+   
+
   static TextStyle font15DarkBlueMedium = TextStyle(
     fontSize: 15.sp,
     fontWeight: FontWeightHelper.medium,
