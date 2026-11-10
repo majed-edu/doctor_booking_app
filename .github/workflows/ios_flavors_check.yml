@@ -3,11 +3,14 @@ name: iOS flavor check
 on:
   workflow_dispatch:
   push:
+    branches:
+      - feature/iOS-flavor
 
 jobs:
   build-ios-flavors:
     runs-on: macos-latest
     strategy:
+      fail-fast: false
       matrix:
         include:
           - flavor: production

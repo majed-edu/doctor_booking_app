@@ -1,9 +1,11 @@
 from pathlib import Path
 import re
 import sys
+import xml.etree.ElementTree as ET
 
 
 PROJECT = Path(__file__).resolve().parents[1] / "ios" / "Runner.xcodeproj" / "project.pbxproj"
+SCHEME_DIRECTORY = PROJECT.parent / "xcshareddata" / "xcschemes"
 FLAVORS = ("production", "development")
 
 
@@ -78,6 +80,26 @@ def main():
         expected = {f"{build}-{flavor}" for flavor in FLAVORS for build in ("Debug", "Release", "Profile")}
         if set(names) != expected:
             return "configuration list names mismatch: " + ", ".join(sorted(set(names) ^ expected))
+
+    configuration_names = set(
+        re.findall(
+            r"^\s*[A-F0-9]{24}\s*/\* [^*]+ \*/ = \{\n\s*isa = XCBuildConfiguration;.*?^\s*name = ([^;]+);",
+            text,
+            re.MULTILINE | re.DOTALL,
+        )
+    )
+    for flavor in FLAVORS:
+        scheme_path = SCHEME_DIRECTORY / f"{flavor}.xcscheme"
+        if not scheme_path.exists():
+            return f"missing scheme: {scheme_path.relative_to(PROJECT.parents[2])}"
+        try:
+            root = ET.parse(scheme_path).getroot()
+        except ET.ParseError as error:
+            return f"malformed scheme {flavor}.xcscheme: {error}"
+        for element in root.iter():
+            configuration = element.get("buildConfiguration")
+            if configuration and configuration not in configuration_names:
+                return f"unknown buildConfiguration in {flavor}.xcscheme: {configuration}"
     return "OK"
 
 
