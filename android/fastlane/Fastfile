@@ -12,7 +12,7 @@ platform :android do
     android_artifact_type: "APK",
     apk_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
     testers: "majedalhaddi90@gmail.com",
-    release_notes: "First release of the app"
+    release_notes: "New release of the doctor appointment booking app."
     
   )
   end
