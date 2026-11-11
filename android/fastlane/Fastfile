@@ -1,0 +1,19 @@
+
+default_platform(:android)
+
+platform :android do
+  desc "Lane for Android Firebase Test Lab"
+  lane :firebase_distribution do
+    sh "flutter clean"
+    sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
+    firebase_app_distribution(
+    app: "1:258425794768:android:3c688a313d35683fedaed5",
+    firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+    android_artifact_type: "APK",
+    apk_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
+    testers: "majedalhaddi90@gmail.com",
+    release_notes: "First release of the app"
+    
+  )
+  end
+end
