@@ -204,6 +204,7 @@ GEM
       prettyprint
     prettyprint (0.2.1)
     prism (2.1.0-x64-mingw-ucrt)
+    prism (2.1.0-x86_64-linux-gnu)
     pstore (0.3.0)
     public_suffix (7.0.5)
     rake (13.4.2)
@@ -266,6 +267,7 @@ GEM
 
 PLATFORMS
   x64-mingw-ucrt
+  x86_64-linux
 
 DEPENDENCIES
   fastlane
