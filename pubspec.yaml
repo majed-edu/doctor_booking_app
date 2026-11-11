@@ -67,6 +67,7 @@ dependencies:
 
   # Code Generation
   build_runner: ^2.15.1 # توليد الكود تلقائيًا.
+  firebase_core: ^5.1.0
 
 
 
