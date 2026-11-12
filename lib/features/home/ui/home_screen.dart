@@ -1,4 +1,5 @@
-import 'package:doctor_booking_app/features/home/widgets/home_top_bar.dart';
+import 'package:doctor_booking_app/features/home/ui/widgets/doctor_blue_container.dart';
+import 'package:doctor_booking_app/features/home/ui/widgets/home_top_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,7 +16,8 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const HomeTopBar()
+              const HomeTopBar(),
+              const DoctorsBlueContainer()
              
             ],
           ),
