@@ -1,3 +1,4 @@
+import 'package:doctor_booking_app/core/helpers/constants.dart';
 import 'package:doctor_booking_app/core/routing/app_router.dart';
 import 'package:doctor_booking_app/core/routing/routes.dart';
 import 'package:doctor_booking_app/core/theming/colors.dart';
@@ -25,7 +26,8 @@ class DocApp extends StatelessWidget {
 
         // debugShowCheckedModeBanner: false,
         // initialRoute: Routes.onBoardingScreen,
-        initialRoute: Routes.homeScreen,
+        // initialRoute: Routes.homeScreen,
+          initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.loginScreen,
 
         onGenerateRoute: appRouter.generateRoute,
       ),

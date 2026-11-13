@@ -1,5 +1,6 @@
 import 'package:doctor_booking_app/core/di/dependency_injction.dart';
 import 'package:doctor_booking_app/core/routing/routes.dart';
+import 'package:doctor_booking_app/features/home/logic/home_cubit.dart';
 import 'package:doctor_booking_app/features/home/ui/home_screen.dart';
 import 'package:doctor_booking_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doctor_booking_app/features/login/ui/login_screen.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
-  Route<dynamic> generateRoute(RouteSettings settings) {
+  Route? generateRoute(RouteSettings settings) {
     // this arguments variable is used to pass data between screens, if needed in the future.
     final arguments = settings.arguments;
 
@@ -32,15 +33,14 @@ class AppRouter {
           ),
         );
       case Routes.homeScreen:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
-      default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(
-              child: Text('No route defined for this path ${settings.name}'),
-            ),
+          builder: (_) => BlocProvider(
+            create: (context) => HomeCubit(getIt())..getSpecializations(),
+            child: HomeScreen(),
           ),
         );
+      default:
+        return null;
     }
   }
 }
