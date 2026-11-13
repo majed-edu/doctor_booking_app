@@ -5,25 +5,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DoctorsListViewItem extends StatelessWidget {
-  final Doctors? doctorsModel;
   const DoctorsListViewItem({super.key, this.doctorsModel});
+
+  final Doctors? doctorsModel;
 
   @override
   Widget build(BuildContext context) {
+    final imageUrl = doctorsModel?.photo ?? doctorsModel?.image;
+
     return Container(
       margin: EdgeInsets.only(bottom: 16.h),
       child: Row(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(12.0),
-            child: Image.network(
-              width: 110.w,
-              height: 120.h,
-              doctorsModel?.photo ?? doctorsModel?.image ?? '',
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) =>
-                  const SizedBox.shrink(),
-            ),
+            borderRadius: BorderRadius.circular(12),
+            child: imageUrl?.isNotEmpty == true
+                ? Image.network(
+                    imageUrl!,
+                    width: 110.w,
+                    height: 120.h,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => _imagePlaceholder(),
+                  )
+                : _imagePlaceholder(),
           ),
           horizontalSpace(16),
           Expanded(
@@ -37,7 +41,7 @@ class DoctorsListViewItem extends StatelessWidget {
                 ),
                 verticalSpace(5),
                 Text(
-                  '${doctorsModel?.degree} | ${doctorsModel?.phone}',
+                  '${doctorsModel?.degree ?? ''} | ${doctorsModel?.phone ?? ''}',
                   style: TextStyles.font12GrayMedium,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -52,6 +56,15 @@ class DoctorsListViewItem extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _imagePlaceholder() {
+    return Container(
+      width: 110.w,
+      height: 120.h,
+      color: Colors.grey.shade200,
+      child: const Icon(Icons.person_outline),
     );
   }
 }
