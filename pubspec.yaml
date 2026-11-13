@@ -72,6 +72,7 @@ dependencies:
   flutter_secure_storage: ^10.3.4
   shared_preferences: ^2.5.3
   cached_network_image: ^3.4.1
+  shimmer: ^3.0.0
 
 
 
