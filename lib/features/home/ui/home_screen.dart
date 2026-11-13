@@ -1,10 +1,14 @@
 import 'package:doctor_booking_app/core/helpers/spacing.dart';
+import 'package:doctor_booking_app/features/home/logic/home_cubit.dart';
+import 'package:doctor_booking_app/features/home/logic/home_state.dart';
 import 'package:doctor_booking_app/features/home/ui/widgets/doctor_blue_container.dart';
 import 'package:doctor_booking_app/features/home/ui/widgets/doctors_list_view.dart';
 import 'package:doctor_booking_app/features/home/ui/widgets/doctors_speciality_list_view.dart';
 import 'package:doctor_booking_app/features/home/ui/widgets/doctors_speciality_see_all.dart';
 import 'package:doctor_booking_app/features/home/ui/widgets/home_top_bar.dart';
+import 'package:doctor_booking_app/features/home/ui/widgets/specializations_and_doctors_bloc_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -25,11 +29,16 @@ class HomeScreen extends StatelessWidget {
               const DoctorsBlueContainer(),
               verticalSpace(24.h),
               const DoctorsSpecialitySeeAll(),
-              verticalSpace(16),
-              const DoctorsSpecialityListView(),
-              verticalSpace(8.h),
-              const DoctorsListView(),
-              ],
+              verticalSpace(18),
+
+              const SpecializationsAndDoctorsBlocBuilder(),
+
+             
+
+              // const DoctorsSpecialityListView(),
+              // verticalSpace(8.h),
+              // const DoctorsListView(),
+            ],
           ),
         ),
       ),
