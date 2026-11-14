@@ -24,8 +24,8 @@ class DoctorImageAndText extends StatelessWidget {
             ),
           ),
           child: Image.asset(
-            'assets/images/onboarding_doctor.png',
-            // fit: BoxFit.cover,
+            'assets/images/onboarding_doctor3.png',
+            fit: BoxFit.cover,
           ),
         ),
         Positioned(

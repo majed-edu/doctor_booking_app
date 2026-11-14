@@ -6,10 +6,10 @@ import 'package:doctor_booking_app/features/sign_up/logic/cubit/sign_up_cubit.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
-
 class SignupForm extends StatefulWidget {
-  const SignupForm({super.key});
+  const SignupForm({super.key, required this.showPasswordValidation});
+
+  final bool showPasswordValidation;
 
   @override
   State<SignupForm> createState() => _SignupFormState();
@@ -39,8 +39,9 @@ class _SignupFormState extends State<SignupForm> {
       setState(() {
         hasLowercase = AppRegex.hasLowerCase(passwordController.text);
         hasUppercase = AppRegex.hasUpperCase(passwordController.text);
-        hasSpecialCharacters =
-            AppRegex.hasSpecialCharacter(passwordController.text);
+        hasSpecialCharacters = AppRegex.hasSpecialCharacter(
+          passwordController.text,
+        );
         hasNumber = AppRegex.hasNumber(passwordController.text);
         hasMinLength = AppRegex.hasMinLength(passwordController.text);
       });
@@ -107,10 +108,20 @@ class _SignupFormState extends State<SignupForm> {
               }
             },
           ),
+          PasswordValidations(
+            hasLowerCase: hasLowercase,
+            hasUpperCase: hasUppercase,
+            hasSpecialCharacter: hasSpecialCharacters,
+            hasNumber: hasNumber,
+            hasMinLength: hasMinLength,
+            isVisible: widget.showPasswordValidation,
+            showOnlyInvalid: true,
+          ),
           verticalSpace(18),
           AppTextFormField(
-            controller:
-                context.read<SignupCubit>().passwordConfirmationController,
+            controller: context
+                .read<SignupCubit>()
+                .passwordConfirmationController,
             hintText: 'Password Confirmation',
             isObscureText: isPasswordConfirmationObscureText,
             suffixIcon: GestureDetector(
@@ -133,13 +144,6 @@ class _SignupFormState extends State<SignupForm> {
             },
           ),
           verticalSpace(24),
-          PasswordValidations(
-            hasLowerCase: hasLowercase,
-            hasUpperCase: hasUppercase,
-            hasSpecialCharacter: hasSpecialCharacters,
-            hasNumber: hasNumber,
-            hasMinLength: hasMinLength,
-          ),
         ],
       ),
     );
