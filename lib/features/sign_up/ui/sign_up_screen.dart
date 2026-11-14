@@ -1,4 +1,3 @@
-
 import 'package:doctor_booking_app/core/helpers/spacing.dart';
 import 'package:doctor_booking_app/core/theming/text_styles.dart';
 import 'package:doctor_booking_app/core/widgets/app_text_button.dart';
@@ -11,8 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
+
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  bool showPasswordValidation = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +30,7 @@ class SignupScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Create Account',
-                  style: TextStyles.font24BlueBold,
-                ),
+                Text('Create Account', style: TextStyles.font24BlueBold),
                 verticalSpace(8),
                 Text(
                   'Sign up now and start exploring all that our app has to offer. We\'re excited to welcome you to our community!',
@@ -36,7 +39,7 @@ class SignupScreen extends StatelessWidget {
                 verticalSpace(36),
                 Column(
                   children: [
-                    const SignupForm(),
+                    SignupForm(showPasswordValidation: showPasswordValidation),
                     verticalSpace(40),
                     AppTextButton(
                       buttonText: "Create Account",
@@ -61,6 +64,10 @@ class SignupScreen extends StatelessWidget {
   }
 
   void validateThenDoSignup(BuildContext context) {
+    setState(() {
+      showPasswordValidation = true;
+    });
+
     if (context.read<SignupCubit>().formKey.currentState!.validate()) {
       context.read<SignupCubit>().emitSignupStates();
     }
