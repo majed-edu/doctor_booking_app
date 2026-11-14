@@ -28,7 +28,9 @@ class SpecialityListViewItem extends StatelessWidget {
       child: Padding(
         padding: EdgeInsetsDirectional.only(start: itemIndex == 0 ? 0 : 12.w),
         child: Column(
+          
           children: [
+            SizedBox(height: 3.h,),
             AnimatedScale(
               scale: isSelected ? 1.08 : 1,
               duration: const Duration(milliseconds: 220),

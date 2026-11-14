@@ -3,7 +3,6 @@ import 'package:doctor_booking_app/core/helpers/shared_pref_helper.dart';
 import 'package:doctor_booking_app/core/networking/api_result.dart';
 import 'package:doctor_booking_app/core/networking/dio_factory.dart';
 import 'package:doctor_booking_app/features/login/data/models/login_request_body.dart';
-import 'package:doctor_booking_app/features/login/data/models/login_response.dart';
 import 'package:doctor_booking_app/features/login/data/repos/login_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,8 +30,13 @@ class LoginCubit extends Cubit<LoginState> {
     //   success: (LoginResponse) {
     response.when(
       success: (loginResponse) async {
-        await saveUserToken(loginResponse.userData?.token ?? '');
-        emit(LoginState.success(LoginResponse));
+        final token = loginResponse.userData?.token;
+        if (token == null || token.trim().isEmpty) {
+          emit(const LoginState.error(error: 'Login token was not returned'));
+          return;
+        }
+        await saveUserToken(token);
+        emit(LoginState.success(loginResponse));
       },
       failure: (error) {
         emit(LoginState.error(error: error.apiErrorModel.message ?? ''));
@@ -42,6 +46,9 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> saveUserToken(String token) async {
     await SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, token);
+    isLoggedInUser = true;
     DioFactory.setTokenIntoHeaderAfterLogin(token);
   }
+
+  Future<void> logout() => DioFactory.clearToken();
 }

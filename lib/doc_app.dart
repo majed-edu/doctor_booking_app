@@ -5,6 +5,8 @@ import 'package:doctor_booking_app/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+final GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
+
 class DocApp extends StatelessWidget {
   const DocApp({super.key, required this.appRouter});
 
@@ -19,6 +21,7 @@ class DocApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Doc App',
+        navigatorKey: appNavigatorKey,
         theme: ThemeData(
           primaryColor: ColorsManager.mainBlue,
           scaffoldBackgroundColor: Colors.white,
@@ -27,7 +30,7 @@ class DocApp extends StatelessWidget {
         // debugShowCheckedModeBanner: false,
         // initialRoute: Routes.onBoardingScreen,
         // initialRoute: Routes.homeScreen,
-          initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.loginScreen,
+        initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.loginScreen,
 
         onGenerateRoute: appRouter.generateRoute,
       ),

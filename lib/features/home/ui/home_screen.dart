@@ -22,9 +22,9 @@ class HomeScreen extends StatelessWidget {
             children: [
               const HomeTopBar(),
               const DoctorsBlueContainer(),
-              verticalSpace(24.h),
+              verticalSpace(24),
               const DoctorsSpecialitySeeAll(),
-              verticalSpace(18),
+              verticalSpace(16),
 
               const SpecializationsBlocBuilder(),
             ],
