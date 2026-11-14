@@ -57,7 +57,6 @@ class SignupBlocListener extends StatelessWidget {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Continue'),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.blue,
@@ -66,6 +65,7 @@ class SignupBlocListener extends StatelessWidget {
               onPressed: () {
                 context.pushNamed(Routes.loginScreen);
               },
+              child: const Text('Continue'),
             ),
           ],
         );

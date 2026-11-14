@@ -27,7 +27,7 @@ class LoginBlocListener extends StatelessWidget {
 
           success: (loginResponse) {
             context.pop();
-            context.pushNamed(Routes.homeScreen);
+            context.pushNamedAndRemoveUntil(Routes.homeScreen);
           },
 
           error: (error) {
@@ -35,13 +35,9 @@ class LoginBlocListener extends StatelessWidget {
           },
         );
       },
-      child: SizedBox.shrink(),
+      child: const SizedBox.shrink(),
     );
   }
-
-
-
-
 
   void setupErrorState(BuildContext context, String error) {
     context.pop();
@@ -49,20 +45,23 @@ class LoginBlocListener extends StatelessWidget {
       context: context,
       builder: (context) => AlertDialog(
         icon: const Icon(
-          Icons.error, 
+          Icons.error,
           color: Colors.red,
-           size: 32
-           ),
+          size: 32,
+        ),
         content: Text(
           error,
-          style: TextStyles.font15DarkBlueMedium),
+          style: TextStyles.font15DarkBlueMedium,
+        ),
         actions: [
           TextButton(
-            onPressed: () => context.pop(),
+            onPressed: () {
+              context.pop();
+            },
             child: Text(
-              'Got it', 
-              style: TextStyles.font14kBlueSemiBold
-              ),
+              'Got it',
+              style: TextStyles.font13BlueRegular,
+            ),
           ),
         ],
       ),
