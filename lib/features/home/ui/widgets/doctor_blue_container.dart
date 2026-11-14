@@ -1,12 +1,12 @@
-
 import 'package:doctor_booking_app/core/helpers/spacing.dart';
 import 'package:doctor_booking_app/core/theming/text_styles.dart';
+import 'package:doctor_booking_app/features/main_layout/logic/main_layout_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DoctorsBlueContainer extends StatelessWidget {
   const DoctorsBlueContainer({super.key});
-  
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,7 @@ class DoctorsBlueContainer extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24.0),
               image: const DecorationImage(
-                image: AssetImage(
-                  'assets/images/home_blue_pattern.png'
-                  ),
+                image: AssetImage('assets/images/home_blue_pattern.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -42,7 +40,11 @@ class DoctorsBlueContainer extends StatelessWidget {
                 verticalSpace(16),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      try {
+                        context.read<MainLayoutCubit>().changeTab(1);
+                      } catch (_) {}
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
@@ -62,7 +64,6 @@ class DoctorsBlueContainer extends StatelessWidget {
             right: 8.w,
             top: 0,
             child: Image.asset(
-              // 'assets/images/doctor1.png',
               'assets/images/doctor_home_page.png',
               height: 200.h,
             ),

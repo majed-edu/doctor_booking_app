@@ -9,28 +9,27 @@ class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo;
   HomeCubit(this._homeRepo) : super(const HomeState.initial());
 
-  List<SpecializationsData?>? specializationsList = [];
+  List<SpecializationsData> specializationsList = [];
+  List<Doctors> allDoctorsList = [];
 
-  void getSpecializations() async {
+  Future<void> getSpecializations() async {
     emit(const HomeState.specializationsLoading());
     final response = await _homeRepo.getSpecialization();
     response.when(
       success: (specializationsResponseModel) {
         // emit(HomeState.specializationsSuccess(specializationsResponseModel));
         specializationsList =
-            specializationsResponseModel.specializationDataList ?? [];
+            (specializationsResponseModel.specializationDataList ??
+                    const <SpecializationsData>[])
+                .whereType<SpecializationsData>()
+                .toList();
+        allDoctorsList = specializationsResponseModel.doctorsList ?? [];
 
-        // Get the doctors list for the first specialization by default.
-        if (specializationsList?.isNotEmpty == true) {
-          getDoctorsList(specializationId: specializationsList?.first?.id);
-        } else {
-          emit(HomeState.doctorsError(ErrorHandler.handle('No doctors found')));
-        }
-
-        emit(
-          HomeState.specializationsSuccess(
-            specializationsResponseModel.specializationDataList,
-          ),
+        emit(HomeState.specializationsSuccess(specializationsList));
+        getDoctorsList(
+          specializationId: specializationsList.isNotEmpty
+              ? specializationsList.first.id
+              : null,
         );
       },
       failure: (errorHandler) {
@@ -54,11 +53,32 @@ class HomeCubit extends Cubit<HomeState> {
 
   /// returns the list of doctors based on the specialization id
   List<Doctors?>? getDoctorsListBySpecializationId(int? specializationId) {
-    return specializationsList
-        ?.firstWhere(
-          (specialization) => specialization?.id == specializationId,
-          orElse: () => null,
+    if (specializationId == null) {
+      return allDoctorsList;
+    }
+
+    SpecializationsData? specialization;
+    for (final item in specializationsList) {
+      if (item.id == specializationId) {
+        specialization = item;
+        break;
+      }
+    }
+    if (specialization == null) {
+      return const [];
+    }
+
+    final doctorsInSpecialization = specialization.doctorsList ?? const [];
+    if (doctorsInSpecialization.isNotEmpty) {
+      return doctorsInSpecialization;
+    }
+
+    return allDoctorsList
+        .where(
+          (doctor) =>
+              doctor.specializationId == specializationId ||
+              doctor.specialization?.id == specializationId,
         )
-        ?.doctorsList;
+        .toList();
   }
 }

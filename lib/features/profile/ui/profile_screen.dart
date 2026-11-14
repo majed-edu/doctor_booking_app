@@ -1,0 +1,9 @@
+import 'package:doctor_booking_app/features/profile/ui/widgets/profile_content.dart';
+import 'package:flutter/material.dart';
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) => const ProfileContent();
+}

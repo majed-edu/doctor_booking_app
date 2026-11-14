@@ -1,13 +1,23 @@
-
-
 class ApiConstants {
   static const String apiBaseUrl = 'https://vcare-live-mock-api.onrender.com/api/';
-  static const String login = '/auth/login';
-  static const String signup = '/auth/register';
+  static const String login = 'auth/login';
+  static const String signup = 'auth/register';
+  static const String logout = 'auth/logout';
+  static const String userProfile = 'user/profile';
+  static const String userUpdate = 'user/update';
+  static const String home = 'home/index';
+  static const String governrates = 'governrate/index';
+  static const String cities = 'city/index';
+  static const String cityShow = 'city/show/{id}';
+  static const String specializations = 'specialization/index';
+  static const String specializationShow = 'specialization/show/{id}';
+  static const String doctors = 'doctor/index';
+  static const String doctorFilter = 'doctor/doctor-filter';
+  static const String doctorSearch = 'doctor/doctor-search';
+  static const String doctorShow = 'doctor/show/{id}';
+  static const String appointments = 'appointment/index';
+  static const String storeAppointment = 'appointment/store';
 }
-
-
-
 
 // this class is used to handle the error messages and codes from the API
 class ApiErrors {

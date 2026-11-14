@@ -4,7 +4,6 @@ import 'package:doctor_booking_app/features/home/ui/widgets/doctors_speciality_s
 import 'package:doctor_booking_app/features/home/ui/widgets/home_top_bar.dart';
 import 'package:doctor_booking_app/features/home/ui/widgets/specializations_list/specializations_bloc_builder.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,7 +15,7 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           width: double.infinity,
-          margin: EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 20.0),
+          margin: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -25,7 +24,6 @@ class HomeScreen extends StatelessWidget {
               verticalSpace(24),
               const DoctorsSpecialitySeeAll(),
               verticalSpace(16),
-
               const SpecializationsBlocBuilder(),
             ],
           ),

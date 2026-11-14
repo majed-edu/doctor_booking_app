@@ -21,24 +21,17 @@ class SharedPrefHelper {
   }
 
   /// Saves a [value] with a [key] in the SharedPreferences.
-  static setData(String key, value) async {
+  static setData(String key, dynamic value) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     debugPrint("SharedPrefHelper : setData with key : $key and value : $value");
-    switch (value.runtimeType) {
-      case String:
-        await sharedPreferences.setString(key, value);
-        break;
-      case int:
-        await sharedPreferences.setInt(key, value);
-        break;
-      case bool:
-        await sharedPreferences.setBool(key, value);
-        break;
-      case double:
-        await sharedPreferences.setDouble(key, value);
-        break;
-      default:
-        return null;
+    if (value is String) {
+      await sharedPreferences.setString(key, value);
+    } else if (value is int) {
+      await sharedPreferences.setInt(key, value);
+    } else if (value is bool) {
+      await sharedPreferences.setBool(key, value);
+    } else if (value is double) {
+      await sharedPreferences.setDouble(key, value);
     }
   }
 

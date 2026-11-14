@@ -26,8 +26,6 @@ class LoginCubit extends Cubit<LoginState> {
       ),
     );
 
-    // response.when(
-    //   success: (LoginResponse) {
     response.when(
       success: (loginResponse) async {
         final token = loginResponse.userData?.token;
@@ -36,6 +34,12 @@ class LoginCubit extends Cubit<LoginState> {
           return;
         }
         await saveUserToken(token);
+        if (loginResponse.userData?.userName != null) {
+          await SharedPrefHelper.setData(
+            SharedPrefKeys.userName,
+            loginResponse.userData!.userName!,
+          );
+        }
         emit(LoginState.success(loginResponse));
       },
       failure: (error) {
