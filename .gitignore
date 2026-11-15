@@ -26,12 +26,23 @@ migrate_working_dir/
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
-.dart_tool/
+**/.dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-/build/
+**/build/
+
+# Flutter and platform build output
+**/.gradle/
+**/.cxx/
+**/Pods/
+**/DerivedData/
+**/ephemeral/
+**/Flutter/Generated.xcconfig
+**/Flutter/flutter_export_environment.sh
+**/GeneratedPluginRegistrant.*
+**/generated_plugin_registrant.*
 
 # Symbolication related
 app.*.symbols

@@ -1,0 +1,13 @@
+# # Flutter platform runners and their generated/native support files are not
+# # representative of the hand-written Dart application.
+# windows/** linguist-vendored
+# linux/** linguist-vendored
+# macos/** linguist-vendored
+# ios/** linguist-vendored
+# android/** linguist-vendored
+# web/** linguist-vendored
+
+# # Keep Dart classified as Dart while excluding common code-generation output.
+# **/*.dart linguist-language=Dart
+# **/*.g.dart linguist-generated
+# **/*.freezed.dart linguist-generated

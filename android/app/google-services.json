@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "258425794768",
+    "project_id": "doctor-booking-distribution",
+    "storage_bucket": "doctor-booking-distribution.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258425794768:android:3c688a313d35683fedaed5",
+        "android_client_info": {
+          "package_name": "com.example.doctor_booking_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtphca1ji7S5JOsqVi09sdUUaJTzw2s68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
